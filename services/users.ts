@@ -14,6 +14,8 @@ function serialize(user: User) {
   };
 }
 
+export type UserRecord = ReturnType<typeof serialize>;
+
 export async function getUser(id: string) {
   const user = await db.user.findUnique({
     where: {
