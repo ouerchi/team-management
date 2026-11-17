@@ -1,4 +1,5 @@
 import { listUsers } from "@/services/users";
+import { connection } from "next/server";
 import { pageQuery, type SearchParams } from "@/lib/validation";
 import { Pagination } from "@/components/pagination";
 import UserFilters from "@/components/user-filters";
@@ -6,6 +7,8 @@ import { UserActions } from "@/components/user-action";
 import { UserForm } from "@/components/user-form";
 
 export default async function UsersPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
+  await connection();
+
   // 1. Read the URL (a bad value falls back to a default instead of crashing)
   const query = pageQuery(await searchParams);
 

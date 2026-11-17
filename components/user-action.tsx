@@ -26,7 +26,8 @@ export function UserActions({ user }: { user: UserRecord }) {
 		setError("");
 		try {
 		const response = await fetch(`/api/users/${user.id}`, { method: "DELETE" });
-		if (!response.ok) throw new Error((await response.json()).error);
+		if (!response.ok) 
+			throw new Error((await response.json()).error);
 		router.refresh(); // reload the server data (list and stats)
 		} catch (err) {
 		setError(err instanceof Error ? err.message : "Could not delete user");

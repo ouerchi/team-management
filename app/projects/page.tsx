@@ -1,10 +1,8 @@
 import { db } from "@/lib/db";
+import { connection } from "next/server";
 import { Pagination } from "@/components/pagination";
 import { pageQuery, SearchParams } from "@/lib/validation";
 import { paginate } from "@/lib/pagination";
-import { count } from "console";
-
-export const dynamic = "force-dynamic";
 
 function listProjects(page: number, size: number){
 	return db.$transaction(
@@ -20,6 +18,7 @@ function listProjects(page: number, size: number){
 }
 
 export default async function ProjectsPage({ searchParams } : { searchParams: Promise<SearchParams> }){
+  await connection();
 
 	const { page, size } = pageQuery(await searchParams);
 	const result = await listProjects(page, size);

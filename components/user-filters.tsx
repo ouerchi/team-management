@@ -30,8 +30,10 @@ export default function UserFilters({
 
 	// Set a param, or remove it when the value is empty
 	function setOrDelete(query: URLSearchParams, key: string, value: string) {
-		if (value) query.set(key, value);
-		else query.delete(key);
+		if (value) 
+			query.set(key, value);
+		else 
+			query.delete(key);
 	}
 
 	// Update the URL. Other params are kept, and the page always goes back to 1.
