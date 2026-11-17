@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const userSchema = z.strictObject({
   name: z.string().trim().min(1, "Name is required").max(100),
-  email: z.email("Enter a valid email").max(254).transform(value => value.toLowerCase()),
+  email: z.email("Enter a valid email").max(250).transform(value => value.toLowerCase()),
   role: z.enum(["admin", "member"]),
   salary: z.string().regex(/^(0|[1-9]\d{0,11})(\.\d{1,2})?$/, "Use a positive amount with at most 2 decimals"),
   startDate: z.iso.date("Enter a valid date (YYYY-MM-DD)").refine(value => value >= "1900-01-01" && value <= new Date().toISOString().slice(0, 10), "Start date must be between 1900 and today"),
