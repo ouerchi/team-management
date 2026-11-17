@@ -1,5 +1,6 @@
 import { Prisma, type User } from "@/generated/prisma/client";
 import { db } from "@/lib/db";
+import { UserNotFoundError } from "@/lib/errors";
 import { idSchema, userSchema, updateUserSchema, type ListQuery } from "@/lib/validation";
 import { paginate } from "@/lib/pagination";
 import { totalSeniorityMonths, calculateStats } from "@/lib/stats";
@@ -20,8 +21,9 @@ export async function getUser(id: string) {
     }
   });
 
-  if (!user)
-		throw new Error;
+  if (!user) {
+    throw new UserNotFoundError();
+  }
   return serialize(user);
 }
 
