@@ -34,7 +34,7 @@ export function Pagination({ page, size, total, totalPages }: PaginationInfo) {
 				{index > 0 && value - pages[index - 1] > 1 && <span className="px-2">…</span>}
 				<Link className={`page-link ${value === page ? "active" : ""}`} aria-current={value === page ? "page" : undefined} href={pageUrl(value)}>{value}</Link>
 			</span>)}
-		{page < totalPages && <Link className="page-link" href={pageUrl(page + 1)}>Next</Link>}
+			{page < totalPages && <Link className="page-link" href={pageUrl(page + 1)}>Next</Link>}
 		</nav>
 		<label className="flex items-center gap-2 text-slate-500">Rows per page
 			<select aria-label="Rows per page" value={size} onChange={event => router.push(pageUrl(1, Number(event.target.value)))} className="w-auto! py-1!">
