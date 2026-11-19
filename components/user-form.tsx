@@ -95,9 +95,11 @@ export function UserForm({ user, onClose }: UserFormProps) {
 				setValues(emptyUser);
 				setTouched(new Set());
 			}
-
 			// Refresh the server-rendered list and statistics after saving.
 			router.refresh();
+			if (isEditing) {
+				onClose?.();
+			}
 		} catch (error) {
 			setMessage(error instanceof Error ? error.message : "Could not save user");
 		} finally {
